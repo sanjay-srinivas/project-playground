@@ -8,6 +8,11 @@ def display_board(board):
     print(board[4]+'|'+board[5]+'|'+board[6])
     print('-|-|-')
     print(board[1]+'|'+board[2]+'|'+board[3])
+    
+    '''
+    function display_board prints out a board. Board is set as a list, where each index 1-9 corresponds with a number on a number pad,
+    so we get a 3 by 3 board representation
+    '''
 
 def player_input():
     marker =''
@@ -18,9 +23,15 @@ def player_input():
             return ('X','O')
         else:
             return ('O','X')
+     '''
+      function player_input takes in a player input and assigns their marker as 'X' or 'O'
+     '''
 
 def place_marker(board, marker, position):
     board[position] = marker
+    '''
+    function place_marker takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board
+    '''
 
 def win_check(board,mark):
     
@@ -32,25 +43,36 @@ def win_check(board,mark):
     (board[9] == mark and board[6] == mark and board[3] == mark) or # down the right side
     (board[7] == mark and board[5] == mark and board[3] == mark) or # diagonal
     (board[9] == mark and board[5] == mark and board[1] == mark)) # diagonal
+    '''
+    function win_check takes in a board and a marks (X or O) and then checks to see if that mark has won
+    '''
 
 import random
-
 def choose_first():
     flip = random.randint(0, 1)
     if flip == 0:
         return 'Player 1'
     else:
         return 'Player 2'
+    '''
+    function choose_first uses the random module to randomly decide which player goes first and returns a string of which player went first
+    '''
 
 def space_check(board, position):
     
     return board[position] == ' '
+    '''
+    function space_check returns a boolean indicating whether a space on the board is freely available
+    '''
 
 def full_board_check(board):
     for i in range(1,10):
         if space_check(board, i):
             return False
     return True
+    '''
+    function full_board_check checks if the board is full and returns a boolean value. True if full, False otherwise
+    '''
 
 def player_choice(board):
     position = 0
@@ -59,10 +81,17 @@ def player_choice(board):
         position = int(input('Choose your next position: (1-9) '))
         
     return position
+    '''
+    function player_choice asks for a player's next position (as a number 1-9) and then uses the space_check function to check if it's a free position.
+    If it is, then return the position for later use
+    '''
 
 def replay():
     choice = input("Do you want to play again?[Y/N]: ").upper()
     return choice == 'Y'
+    '''
+    Function replay asks the player if they want to play again and returns a boolean True if they do want to play again
+    '''
 
 print('Welcome to Tic Tac Toe!')
 
